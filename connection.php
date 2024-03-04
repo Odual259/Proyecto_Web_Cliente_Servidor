@@ -1,4 +1,3 @@
-//Prueba GitHub
 <?php
 $servername = "localhost";
 $username = "root";
