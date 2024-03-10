@@ -1,5 +1,5 @@
 <?php
-include "connection.php";
+include "../PHP_Methods/connection.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST["title"];

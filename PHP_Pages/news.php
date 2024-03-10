@@ -6,78 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KDN Project Management Tool - Noticias</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: rgb(0, 44, 151);
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        #logo {
-            max-width: 100%;
-            height: auto;
-            margin: 20px 0;
-        }
-
-        nav {
-            background-color: #333;
-            overflow: hidden;
-        }
-
-        nav a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        section {
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-        }
-    
         form {
+            display: none;
             margin-top: 20px;
         }
-
-        input,
-        textarea,
-        button {
-            margin-bottom: 10px;
-        }
-
-        form {
-            display: none; /* El formulario estará oculto inicialmente */
-            margin-top: 20px;
-        }
-
         input,
         textarea,
         button {
@@ -132,7 +64,7 @@
     </section>
 
         <?php
-        include "connection.php";
+        include "../PHP_Methodsconnection.php";
 
         $sql = "SELECT * FROM news";
         $result = $conn->query($sql);

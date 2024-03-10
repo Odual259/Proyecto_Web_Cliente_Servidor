@@ -1,5 +1,5 @@
 <?php
-include "connection.php";
+include "../PHP_Methods/connection.php";
 $action = isset($_POST["action"]) ? $_POST["action"] : '';
 
 switch ($action) {

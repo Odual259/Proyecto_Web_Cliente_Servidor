@@ -1,5 +1,5 @@
 <?php
-include "connection.php";
+include "../PHP_Methodsconnection.php";
 
 session_start();
 $usuario = $_SESSION["users"];
@@ -10,51 +10,6 @@ $usuario = $_SESSION["users"];
 
 <head>
     <title>Usuarios Registrados</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        h1 {
-            color: rgb(0, 44, 151);
-        }
-
-        h2 {
-            margin-top: 20px;
-            color: rgb(0, 44, 151);
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin-top: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: rgb(0, 44, 151);
-            color: #fff;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 
 <body>

@@ -11,6 +11,7 @@
 }
 
 body {
+    position: relative;
     font-family: "Bahnschrift Light Semicondensed", Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -18,6 +19,20 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Ajusta la opacidad según sea necesario */
+    z-index: 1;
+    display: none;
+    /* Para ocultar inicialmente el fondo */
 }
 
 #bodyLoginRegister {
@@ -30,6 +45,9 @@ body {
     height: 100vh;
 }
 
+.show-form {
+    display: block !important;
+}
 
 #container {
     display: flex;
@@ -62,6 +80,27 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+}
+
+body.show-form {
+    overflow: hidden;
+}
+
+#insert-form-container {
+    border-radius: 8px;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#client-form {
+    text-align: center;
 }
 
 label {
@@ -187,4 +226,37 @@ th {
 tr:nth-child(even) {
     font-family: "Bahnschrift Light Semicondensed", Arial, sans-serif;
     background-color: #f2f2f2;
+}
+
+.buttonAction {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#add-client-btn {
+    width: 125px;
+    font-family: "Bahnschrift", Arial, sans-serif;
+    background-color: rgb(0, 44, 151);
+    color: #fff;
+    padding: 10px;
+    margin: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    /* Espacio inferior para separar del contenido siguiente */
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    z-index: 999; /* Asegura que esté por encima del contenido */
 }
