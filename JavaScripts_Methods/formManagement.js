@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Puedes realizar la solicitud AJAX aquí para eliminar el cliente en el servidor
         // Ejemplo con Fetch API:
-        fetch('clientes.php', {
+        fetch('clients.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

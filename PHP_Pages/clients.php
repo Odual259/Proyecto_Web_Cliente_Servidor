@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
                         <td><?php echo $row["Client_Status"] ?></td>
                         <td class="buttonAction">
                             <button class="edit-btn" data-id="<?php echo $row["ID_Client"] ?>"><i class="fas fa-edit"></i>Edit</button>
-                            <button class="delete-btn" data-id="<?php echo $row["ID_Client"] ?>"><i class="fas fa-trash"></i>Delete</button> 
+                            <button class="delete-btn" data-id="<?php echo $row["ID_Client"] ?>"><i class="fas fa-trash"></i>Delete</button>
                         </td>
                     </tr>
                 <?php }
