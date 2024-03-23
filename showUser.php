@@ -1,5 +1,5 @@
 <?php
-include "../PHP_Methodsconnection.php";
+include "connection.php";
 
 session_start();
 $usuario = $_SESSION["users"];

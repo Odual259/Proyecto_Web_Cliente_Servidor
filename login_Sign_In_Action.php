@@ -1,5 +1,5 @@
 <?php
-include "../PHP_Methods/connection.php";
+include "connection.php";
 $action = isset($_POST["action"]) ? $_POST["action"] : '';
 
 switch ($action) {
@@ -12,7 +12,7 @@ switch ($action) {
             $sql = "INSERT INTO users (First_Name, Email, Password) VALUES ('$name', '$email', '$password')";
             
             if ($conn->query($sql) === TRUE) {
-                header("Location: login.html");
+                header("Location: login.php");
             } else {
                 echo "No se pudieron agregar registros: " . $conn->error;
             }
@@ -35,7 +35,7 @@ switch ($action) {
                         session_start();
                         $_SESSION["users"] = $row["First_Name"];
                         $_SESSION["user_id"] = $row["User_ID"];
-                        header("Location: index.html");
+                        header("Location: index.php");
                     } else {
                         echo "Hay error en el inicio de sesión.";
                     }

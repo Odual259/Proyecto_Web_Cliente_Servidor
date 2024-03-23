@@ -5,26 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KDN Project Management Tool</title>
-    <link rel="stylesheet" type="text/css" href="../Styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="Styles/styles.css">
 </head>
 
 <body>
 
     <header id="headerMenu">
-        <a href="../HTML_Pages/index.html">
+        <a href="index.html">
             <img id="logoDarkBackgrounds" src="https://1000logos.net/wp-content/uploads/2023/03/KPMG-logo.png"
                 alt="KDN Project Management Tool">
         </a>
         <h1>KDN Project Management Tool</h1>
     </header>
 
-    <nav>
-        <a href="../PHP_Pages/clients.php">Clients</a>
-        <a href="../PHP_Pages/calendar.php">Calendar</a>
-        <a href="../PHP_Pages/processes.php">Processes</a>
-        <a href="../PHP_Pages/team.php">Team</a>
-        <a href="../PHP_Pages/news.php">News</a>
-    </nav>
+    <?php include "menu.php"; ?>
 
     <section>
         <h2>Bienvenido a KDN Project Management Tool</h2>

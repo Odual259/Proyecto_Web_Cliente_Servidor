@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clientForm.style.display = "block";
         document.body.classList.add("show-form");
         overlay.style.display = "block";
+        document.getElementById("client-form").reset();
     });
 
     cancelBtn.addEventListener("click", function () {
@@ -30,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".delete-btn").forEach(function (deleteBtn) {
         deleteBtn.addEventListener("click", function (event) {
             event.preventDefault(); // Evitar la navegación por el enlace
-
+    
             const clientId = this.getAttribute("data-id");
             const confirmDelete = confirm("¿Estás seguro de que deseas eliminar este cliente?");
-
+    
             if (confirmDelete) {
                 // Si el usuario confirma la eliminación, enviar una solicitud al servidor para eliminar el cliente
                 deleteClient(clientId);
@@ -41,14 +42,42 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    function deleteClient(clientId) {
-        // Aquí debes enviar una solicitud al servidor para eliminar el cliente con el ID proporcionado
-        // Puedes usar AJAX para enviar la solicitud al servidor
-        // En este ejemplo, se muestra un mensaje en la consola
-        console.log("Solicitud para eliminar el cliente con ID: " + clientId);
+    // Lógica para editar al hacer clic en el botón "Editar"
+    document.querySelectorAll(".edit-btn").forEach(function (editBtn) {
+        editBtn.addEventListener("click", function (event) {
+            event.preventDefault(); // Evitar la navegación por el enlace
+    
+            const clientId = this.getAttribute("data-id");
+            document.getElementById("client-id").value = clientId; // Asignar el ID del cliente al campo oculto    
+            
+            // Aquí puedes usar AJAX para obtener los datos del cliente con el ID específico
+            // y luego llenar el formulario de edición con esos datos
+            // Luego, muestra el formulario de edición con los datos precargados
+            // y permite al usuario realizar ediciones
+            // Puedes hacer esto utilizando fetch o XMLHttpRequest
+            // Por ejemplo:
+            fetch('getClient.php?id=' + encodeURIComponent(clientId))
+            .then(response => response.json())
+            .then(data => {
+                // Llenar el formulario con los datos del cliente obtenidos
+                document.getElementById("client-name").value = data.Client_Name;
+                document.getElementById("complexity").value = data.Complexity;
+                document.getElementById("engagement").value = data.Engagement;
+                document.getElementById("client-status").value = data.Client_Status;
+    
+                // Mostrar el formulario de edición
+                document.getElementById("insert-form-container").style.display = "block";
+                document.getElementById("client-form").style.display = "block";
+                document.body.classList.add("show-form");
+                document.getElementById("overlay").style.display = "block";
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
 
-        // Puedes realizar la solicitud AJAX aquí para eliminar el cliente en el servidor
-        // Ejemplo con Fetch API:
+    function deleteClient(clientId) {
         fetch('clients.php', {
             method: 'POST',
             headers: {
@@ -59,11 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.text())
         .then(data => {
             console.log('Éxito:', data);
-            // Realizar cualquier otra acción necesaria después de la eliminación
-            // Puedes recargar la página o actualizar la tabla de clientes, por ejemplo
+            location.reload();
         })
         .catch((error) => {
             console.error('Error:', error);
         });
     }
+    
 });

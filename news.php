@@ -39,13 +39,7 @@
         </header>";
     ?>
 
-    <nav>
-        <a href="#clients">Clients</a>
-        <a href="#calendar">Calendar</a>
-        <a href="#processes">Processes</a>
-        <a href="#team">Team</a>
-        <a href="news.php">News</a>
-    </nav>
+    <?php include "menu.php"; ?>
 
     <section>
         <h2>News</h2>
@@ -64,7 +58,7 @@
     </section>
 
         <?php
-        include "../PHP_Methodsconnection.php";
+        include "connection.php";
 
         $sql = "SELECT * FROM news";
         $result = $conn->query($sql);
