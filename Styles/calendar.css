@@ -1,0 +1,141 @@
+body {
+    position: relative;
+    font-family: "Bahnschrift Light Semicondensed", Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#headerCalendar {
+    display: flex;
+    align-items: center;
+     justify-content: space-between;
+    background-color: rgb(0, 44, 151);
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    flex-direction: row;
+}
+#logoCalendar {
+    max-width: 100%;
+    height: 100px;
+    margin-top: 5px;
+    margin-right: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 7.5px;
+}
+
+h1 {
+    margin: 0;
+}
+
+#refreshCalendar,#addProcess {
+    background-color: #fff; 
+    color: #1f33ec; 
+    border: none; 
+    padding: 15px 32px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+    border-radius: 12px; 
+}
+
+#refreshCalendar:hover {
+    background-color: #faf6f6; 
+}
+#addProcess:hover {
+    background-color: #faf6f6; 
+}
+#logoDarkBackgrounds {
+    max-width: 100%;
+    height: 100px;
+    margin-top: 5px;
+    margin-right: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 7.5px;
+}
+
+#mainContainer {
+    width: 40%;
+    margin: auto;
+}
+
+#bodyCalendar{
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+#calendar {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td, th {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+    background-color:#fff;
+    color:#333;
+  }
+  th {
+    background-color: #0056b3; 
+    color: white;
+  }
+  .highlight {
+    background-color: #1f33ec;
+    color: white;
+  }
+  #monthAndYear {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-top: 50px;
+
+  }
+  #monthAndYear span {
+    cursor: pointer;
+    margin: 0 15px;
+  }
+
+.filter-section {
+  background-color: #fff; 
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+}
+
+
+.filter-section h2 {
+    color: rgb(0, 44, 151);
+    margin-bottom: 20px;
+    text-align: center; 
+  }
+  
+.filter-section label {
+  color: rgb(0, 44, 151);
+  font-family: Arial, sans-serif; 
+  margin-bottom: 20px;
+  font-weight: bold; 
+}
+
+
+.filter-section form {
+  clear: both; 
+}
+
+.filter-section label,
+.filter-section select {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.filter-section select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
