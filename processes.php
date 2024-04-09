@@ -10,27 +10,33 @@ setlocale(LC_ALL, 'es_ES');
 $mes_actual = strftime('%B');
 
 // Verifica si se envió el formulario para insertar o actualizar datos en la base de datos
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["process-name"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["processName"])) {
     // Obtén los datos del formulario
-    $processName = $_POST["process-name"];
-    $idClient = $_POST["idClient"];
-    $idEntity = $_POST["idEntity"];
-    $processestatus = $_POST["process-status"];
+    $processName = $_POST["processName"];
+    $clientId = $_POST["cliente"];
+    $entityId = $_POST["entity"];
+    $clusterId = $_POST["cluster"];
+    $countryId = $_POST["country"];
+    $areaId = $_POST["area"];
+    $categoryId = $_POST["category"];
+    $periodicityId = $_POST["periodicity"];
+    $approverId = $_POST["approver"];
+    $analystId = $_POST["analyst"];
     $period = $_POST["period"];
     $year = $_POST["year"];
-    $due_date = $_POST["due_date"];
-    
+    $processStatus = $_POST["processStatus"];
+
     if(isset($_POST["process-id"]) && !empty($_POST["process-id"])) {
         // Si se proporciona un ID de proceso, la solicitud es para actualizar un proceso existente
         $processId = $_POST["process-id"];
-        $sql = "UPDATE processes SET process_Name=?, idClient=?, idEntity=?, process_Status=?, period=?, year=?, due_date=? WHERE ID_process=?";
+        $sql = "UPDATE processes SET Process=?, ID_Client=?, ID_Entity=?, ID_Cluster=?, ID_Country=?, ID_Area=?, ID_Category=?, ID_Periodicity=?, ID_User_Approver=?, ID_User_Analyst=?, Period=?, Year=?, Process_Status=? WHERE ID_Process=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssi", $processName, $idClient, $idEntity, $processestatus, $processId, $period , $year , $due_date);
+        $stmt->bind_param("siiiiiiiiiisii", $processName, $clientId, $entityId, $clusterId, $countryId, $areaId, $categoryId, $periodicityId, $approverId, $analystId, $period, $year, $processStatus, $processId);
     } else {
         // Si no se proporciona un ID de proceso, la solicitud es para insertar un nuevo proceso
-        $sql = "INSERT INTO processes (process_Name, idClient, idEntity, process_Status, processId, period , year , due_date) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO processes (Process, ID_Client, ID_Entity, ID_Cluster, ID_Country, ID_Area, ID_Category, ID_Periodicity, ID_User_Approver, ID_User_Analyst, Period, Year, Process_Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $processName, $idClient, $idEntity, $processestatus);
+        $stmt->bind_param("siiiiiiiiiiis", $processName, $clientId, $entityId, $clusterId, $countryId, $areaId, $categoryId, $periodicityId, $approverId, $analystId, $period, $year, $processStatus);
     }
 
     // Ejecuta la consulta
@@ -51,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
     $processIdToDelete = $_POST["delete"];
 
     // Evitar la inyección de SQL utilizando una declaración preparada
-    $deleteSql = "DELETE FROM processes WHERE ID_process = ?";
+    $deleteSql = "DELETE FROM processes WHERE ID_Process = ?";
     $deleteStmt = $conn->prepare($deleteSql);
     $deleteStmt->bind_param("i", $processIdToDelete);
 
@@ -67,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
     // Cerrar la declaración de eliminación
     $deleteStmt->close();
 }
+
 ?>
 
 <!DOCTYPE html>
