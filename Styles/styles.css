@@ -94,13 +94,33 @@ body.show-form {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 20px;
+    padding: 40px; /* Ajusta el padding según sea necesario para hacer el contenedor más grande */
+    width: 100%; /* Ajusta el ancho del contenedor según sea necesario */
+    max-width: 800px; /* Establece un ancho máximo si deseas que el contenedor no se vuelva demasiado grande en pantallas grandes */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
 #client-form {
     text-align: center;
+}
+
+#process-form {
+    text-align: center;
+    width: 1000px;
+}
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+#process-form input[type="text"],
+#process-form select {
+    width: 100%; /* Establece el ancho al 100% del contenedor padre */
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
 }
 
 label {
@@ -259,4 +279,13 @@ tr:nth-child(even) {
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
     z-index: 999; /* Asegura que esté por encima del contenido */
+}
+
+.form-column {
+    float: left;
+    width: 200px;
+}
+
+col {
+    width: 200px;
 }

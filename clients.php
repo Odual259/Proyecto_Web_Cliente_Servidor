@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
 <body>
 
 <header id="headerMenu">
-    <a href="index.php">
+    <a href="index.html">
         <img id="logoDarkBackgrounds" src="https://1000logos.net/wp-content/uploads/2023/03/KPMG-logo.png"
         alt="KDN Project Management Tool">
     </a>
@@ -136,7 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
                         <td><?php echo $row["Complexity"] ?></td>
                         <td><?php echo $row["Engagement"] ?></td>
                         <td><?php echo $row["Client_Status"] ?></td>
-                        <td class="buttonAction">
                         <td class="buttonAction">
                         <button class="edit-btn" data-id="<?php echo $row["ID_Client"] ?>"><i class="fas fa-edit"></i>Edit</button>
                         <button class="delete-btn" data-id="<?php echo $row["ID_Client"] ?>"><i class="fas fa-trash"></i>Delete</button>
