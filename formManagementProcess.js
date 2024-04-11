@@ -36,14 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // Lógica para editar al hacer clic en el botón "Editar"
 document.querySelectorAll(".edit-btn").forEach(function (editBtn) {
     editBtn.addEventListener("click", function (event) {
-        event.preventDefault(); // Evitar la navegación por el enlace
+        event.preventDefault(); 
         const processId = this.getAttribute("data-id");
-        // Aquí puedes usar AJAX para obtener los datos del proceso con el ID específico
-        // y luego llenar el formulario de edición con esos datos
-        // Luego, muestra el formulario de edición con los datos precargados
-        // y permite al usuario realizar ediciones
-        // Puedes hacer esto utilizando fetch o XMLHttpRequest
-        // Por ejemplo:
         fetch('getProcess.php?id=' + encodeURIComponent(processId))
             .then(response => response.json())
             .then(data => {

@@ -25,13 +25,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Lógica para eliminar al hacer clic en el botón "Eliminar"
     document.querySelectorAll(".delete-btn").forEach(function (deleteBtn) {
         deleteBtn.addEventListener("click", function (event) {
-            event.preventDefault(); // Evitar la navegación por el enlace
+            event.preventDefault();
     
             const clientId = this.getAttribute("data-id");
             const confirmDelete = confirm("¿Estás seguro de que deseas eliminar este cliente?");
     
             if (confirmDelete) {
-                // Si el usuario confirma la eliminación, enviar una solicitud al servidor para eliminar el cliente
                 deleteClient(clientId);
             }
         });
@@ -40,17 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Lógica para editar al hacer clic en el botón "Editar"
     document.querySelectorAll(".edit-btn").forEach(function (editBtn) {
         editBtn.addEventListener("click", function (event) {
-            event.preventDefault(); // Evitar la navegación por el enlace
+            event.preventDefault();
     
             const clientId = this.getAttribute("data-id");
             document.getElementById("client-id").value = clientId; // Asignar el ID del cliente al campo oculto    
-            
-            // Aquí puedes usar AJAX para obtener los datos del cliente con el ID específico
-            // y luego llenar el formulario de edición con esos datos
-            // Luego, muestra el formulario de edición con los datos precargados
-            // y permite al usuario realizar ediciones
-            // Puedes hacer esto utilizando fetch o XMLHttpRequest
-            // Por ejemplo:
             fetch('getClient.php?id=' + encodeURIComponent(clientId))
             .then(response => response.json())
             .then(data => {
