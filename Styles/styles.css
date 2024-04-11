@@ -93,10 +93,10 @@ body.show-form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: transparent;
     padding: 40px; /* Ajusta el padding según sea necesario para hacer el contenedor más grande */
     width: 100%; /* Ajusta el ancho del contenedor según sea necesario */
-    max-width: 800px; /* Establece un ancho máximo si deseas que el contenedor no se vuelva demasiado grande en pantallas grandes */
+    max-width: 100%; /* Establece un ancho máximo si deseas que el contenedor no se vuelva demasiado grande en pantallas grandes */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
@@ -267,7 +267,22 @@ tr:nth-child(even) {
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 25px;
-    /* Espacio inferior para separar del contenido siguiente */
+}
+
+#add-process-btn {
+    display: flex;
+    flex-direction: row;
+    width: 125px; /* Ancho fijo */
+    margin: 15px auto; /* Margen superior e inferior de 15px y centrado horizontal */
+    font-family: "Bahnschrift", Arial, sans-serif;
+    background-color: rgb(0, 44, 151);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    
 }
 
 #overlay {

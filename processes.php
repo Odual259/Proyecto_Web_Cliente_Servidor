@@ -10,9 +10,9 @@ setlocale(LC_ALL, 'es_ES');
 $mes_actual = strftime('%B');
 
 // Verifica si se envió el formulario para insertar o actualizar datos en la base de datos
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["processName"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["process"])) {
     // Obtén los datos del formulario
-    $processName = $_POST["processName"];
+    $process = $_POST["process"];
     $clientId = $_POST["cliente"];
     $entityId = $_POST["entity"];
     $clusterId = $_POST["cluster"];
@@ -24,19 +24,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["processName"])) {
     $analystId = $_POST["analyst"];
     $period = $_POST["period"];
     $year = $_POST["year"];
-    $processStatus = $_POST["processStatus"];
+    $dueDate = $_POST["dueDate"]; 
+    $finalStatus = $_POST["finalStatus"];
 
     if(isset($_POST["process-id"]) && !empty($_POST["process-id"])) {
         // Si se proporciona un ID de proceso, la solicitud es para actualizar un proceso existente
         $processId = $_POST["process-id"];
-        $sql = "UPDATE processes SET Process=?, ID_Client=?, ID_Entity=?, ID_Cluster=?, ID_Country=?, ID_Area=?, ID_Category=?, ID_Periodicity=?, ID_User_Approver=?, ID_User_Analyst=?, Period=?, Year=?, Process_Status=? WHERE ID_Process=?";
+        $sql = "UPDATE processes SET Process=?, ID_Client=?, ID_Entity=?, ID_Cluster=?, ID_Country=?, ID_Area=?, ID_Category=?, ID_Periodicity=?, ID_User_Approver=?, ID_User_Analyst=?, Period=?, Year=?, Due_date=?, Final_Status=? WHERE ID_Process=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("siiiiiiiiiisii", $processName, $clientId, $entityId, $clusterId, $countryId, $areaId, $categoryId, $periodicityId, $approverId, $analystId, $period, $year, $processStatus, $processId);
+        $stmt->bind_param("siiiiiiiiissssi", $process, $clientId, $entityId, $clusterId, $countryId, $areaId, $categoryId, $periodicityId, $approverId, $analystId, $period, $year, $dueDate, $finalStatus, $processId);
     } else {
         // Si no se proporciona un ID de proceso, la solicitud es para insertar un nuevo proceso
-        $sql = "INSERT INTO processes (Process, ID_Client, ID_Entity, ID_Cluster, ID_Country, ID_Area, ID_Category, ID_Periodicity, ID_User_Approver, ID_User_Analyst, Period, Year, Process_Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO processes (Process, ID_Client, ID_Entity, ID_Cluster, ID_Country, ID_Area, ID_Category, ID_Periodicity, ID_User_Approver, ID_User_Analyst, Period, Year, Due_date, Final_Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("siiiiiiiiiiis", $processName, $clientId, $entityId, $clusterId, $countryId, $areaId, $categoryId, $periodicityId, $approverId, $analystId, $period, $year, $processStatus);
+        $stmt->bind_param("siiiiiiiiissss", $process, $clientId, $entityId, $clusterId, $countryId, $areaId, $categoryId, $periodicityId, $approverId, $analystId, $period, $year, $dueDate, $finalStatus);
     }
 
     // Ejecuta la consulta
@@ -84,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processes List</title>
     <link rel="stylesheet" type="text/css" href="Styles/styles.css">
-    <script src="formManagement.js"></script>
+    <script src="formManagementProcess.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
@@ -103,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
 
 <h2>Processes List</h2>
 
-<button id="add-client-btn" class="form-open">Add Process</button>
+<button id="add-process-btn" class="form-open">Add Process</button>
 
 <div id="overlay"></div>
 <div id="insert-form-container" style="display: none;">
@@ -111,12 +112,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
         <div class="row">
             <div class="col-md-4">
                 <input type="hidden" id="process-id" name="process-id">
-                <label for="processName" class="form-label">Process Name</label>
-                <input type="text" class="form-control" id="processName" placeholder="">
+                <label for="process" class="form-label">Process Name</label>
+                <input type="text" id="process" name="process" required>
             </div>
             <div class="col-md-4">
                 <label for="clientName" class="form-label">Client</label>
-                <select class="form-select" aria-label="" name="cliente">
+                <select class="form-select" aria-label="" name="cliente" id="clientName">
                 <option selected value="Select Client"></option>
                 <?php
                 $sql = "SELECT * FROM clients";
@@ -135,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
             </div>
             <div class="col-md-4">
                 <label for="entityName" class="form-label">Entity</label>
-                <select class="form-select" aria-label="" name="entity">
+                <select class="form-select" aria-label="" name="entity" id="entityName">
                 <option selected value="Select Entity"></option>
                 <?php
                 $sql = "SELECT * FROM entities";
@@ -157,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
         <div class="row">
             <div class="col-md-4">
                 <label for="cluster" class="form-label">Cluster</label>
-                <select class="form-select" aria-label="" name="cluster">
+                <select class="form-select" aria-label="" name="cluster" id="cluster">
                 <option selected value="Select Entity"></option>
                 <?php
                 $sql = "SELECT * FROM clusters";
@@ -176,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
             </div>
             <div class="col-md-4">
                 <label for="country" class="form-label">Country</label>
-                <select class="form-select" aria-label="" name="country">
+                <select class="form-select" aria-label="" name="country" id="country">
                 <option selected value="Select Entity"></option>
                 <?php
                 $sql = "SELECT * FROM countries";
@@ -195,8 +196,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
             </div>
             <div class="col-md-4">
                 <label for="area" class="form-label">Area</label>
-                <select class="form-select" aria-label="" name="area">
-                <option selected value="Select Entity"></option>
+                <select class="form-select" aria-label="" name="area" id="area">
+                <option selected value="Select area"></option>
                 <?php
                 $sql = "SELECT * FROM areas";
                 $result = $conn->query($sql);
@@ -207,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
                         echo "<option value=\"" . $row["ID_Area"] . "\">" . $row["Area"] . "</option>";
                     }
                 } else {
-                    echo "<option value=\"\">No se encontraron countries</option>";
+                    echo "<option value=\"\">No se encontraron areas</option>";
                 }
                 ?>
             </select>
@@ -217,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
         <div class="row">
             <div class="col-md-4">
                 <label for="category" class="form-label">Category</label>
-                <select class="form-select" aria-label="" name="category">
+                <select class="form-select" aria-label="" name="category"  id="category">
                 <option selected value="Select Category"></option>
                 <?php
                 $sql = "SELECT * FROM categories";
@@ -236,7 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
             </div>
             <div class="col-md-4">
                 <label for="periodicity" class="form-label">Periodicity</label>
-                <select class="form-select" aria-label="" name="periodicity">
+                <select class="form-select" aria-label="" name="periodicity" id="periodicity">
                 <option selected value="Select Periodicity"></option>
                 <?php
                 $sql = "SELECT * FROM periodicity";
@@ -255,7 +256,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
             </div>
             <div class="col-md-4">
                 <label for="approver" class="form-label">Approver</label>
-                <select class="form-select" aria-label="" name="approver">
+                <select class="form-select" aria-label="" name="approver" id="approver">
                 <option selected value="Select Approver"></option>
                 <?php
                 $sql = "SELECT * FROM users";
@@ -277,7 +278,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
         <div class="row">
             <div class="col-md-4">
                 <label for="analyst" class="form-label">Analyst</label>
-                <select class="form-select" aria-label="" name="analyst">
+                <select class="form-select" aria-label="" name="analyst" id="analyst">
                 <option selected value="Select Analyst"></option>
                 <?php
                 $sql = "SELECT * FROM users";
@@ -296,50 +297,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
             </div>
             <div class="col-md-4">
                 <label for="period" class="form-label">Period</label>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" name="period" id="period">
                     <option selected></option>
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <label for="year" class="form-label">Year</label>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" name="year" id="year">
                     <option selected></option>
-                    <option value="1">2020</option>
-                    <option value="2">2021</option>
-                    <option value="3">2022</option>
-                    <option value="4">2023</option>
-                    <option value="5">2024</option>
-                    <option value="6">2025</option>
-                    <option value="7">2026</option>
-                    <option value="8">2027</option>
-                    <option value="9">2028</option>
-                    <option value="10">2029</option>
-                    <option value="11">2030</option>
-                    <option value="12">2031</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                    <option value="2031">2031</option>
                 </select>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <label for="processStatus" class="form-label">Process Status</label>
-                <select class="form-select" aria-label="Default select example">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="dueDate" class="form-label">Due Date</label>
+            <input type="date" class="form-control" id="dueDate" name="dueDate" id="dueDate">
+    </div>
+        
+            <div class="col-md-6">
+                <label for="finalStatus" class="form-label">Process Status</label>
+                <select class="form-select" aria-label="Default select example" name="finalStatus" id="finalStatus">
                     <option selected></option>
-                    <option value="1">Pending Approval</option>
-                    <option value="2">Approved</option>
-                    <option value="3">Rejected</option>
+                    <option value="Pending Approval">Pending Approval</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
                 </select>
             </div>
         </div>
