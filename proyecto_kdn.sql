@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2024 a las 22:23:51
+-- Tiempo de generación: 11-04-2024 a las 04:57:51
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -147,6 +147,15 @@ CREATE TABLE `clients` (
   `Client_Status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `clients`
+--
+
+INSERT INTO `clients` (`ID_Client`, `Engagement`, `Client_Name`, `Complexity`, `Client_Status`) VALUES
+(63, '16', 'Test 1', 'High', 'Active'),
+(65, '1', 'Test 1', 'High', 'Active'),
+(66, '2', 'Test 1', 'High', 'Active');
+
 -- --------------------------------------------------------
 
 --
@@ -245,7 +254,7 @@ INSERT INTO `countries` (`ID_Country`, `Country`) VALUES
 
 CREATE TABLE `entities` (
   `ID_Entity` int(11) NOT NULL,
-  `Company_Name` varchar(100) NOT NULL,
+  `Entity_Name` varchar(100) NOT NULL,
   `ID_Client` int(11) NOT NULL,
   `ID_Cluster` int(11) NOT NULL,
   `ID_Country` int(11) NOT NULL,
@@ -253,6 +262,13 @@ CREATE TABLE `entities` (
   `Company_Internal_ID` varchar(100) NOT NULL,
   `Legal_ID` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `entities`
+--
+
+INSERT INTO `entities` (`ID_Entity`, `Entity_Name`, `ID_Client`, `ID_Cluster`, `ID_Country`, `ID_Business_Type`, `Company_Internal_ID`, `Legal_ID`) VALUES
+(1, 'Test Entity 1', 59, 1, 1, 1, '0001', '0001');
 
 -- --------------------------------------------------------
 
@@ -302,7 +318,7 @@ CREATE TABLE `processes` (
   `ID_Process` int(11) NOT NULL,
   `Process` varchar(100) NOT NULL,
   `ID_Client` int(11) NOT NULL,
-  `ID_Entitiy` int(11) NOT NULL,
+  `ID_Entity` int(11) NOT NULL,
   `ID_Cluster` int(11) NOT NULL,
   `ID_Country` int(11) NOT NULL,
   `ID_Area` int(11) NOT NULL,
@@ -313,8 +329,17 @@ CREATE TABLE `processes` (
   `Period` varchar(30) NOT NULL,
   `Year` varchar(4) NOT NULL,
   `Due_date` date NOT NULL,
-  `Final_Status` varchar(15) NOT NULL
+  `Final_Status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `processes`
+--
+
+INSERT INTO `processes` (`ID_Process`, `Process`, `ID_Client`, `ID_Entity`, `ID_Cluster`, `ID_Country`, `ID_Area`, `ID_Category`, `ID_Periodicity`, `ID_User_Approver`, `ID_User_Analyst`, `Period`, `Year`, `Due_date`, `Final_Status`) VALUES
+(1, 'Prueba', 63, 1, 2, 2, 6, 2, 3, 7, 1, 'January', '2021', '2024-04-13', 'Rejected'),
+(2, 'Prueba', 63, 1, 2, 3, 6, 3, 3, 2, 1, 'January', '2020', '2024-04-21', 'Pending Approval'),
+(6, 'Prueba', 63, 1, 2, 4, 6, 2, 2, 2, 2, 'April', '2020', '2024-04-13', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -338,7 +363,8 @@ INSERT INTO `users` (`User_ID`, `First_Name`, `Last_Name`, `Email`, `Password`) 
 (1, 'Odual', 'Bonilla', 'odualbc@gmail.com', '*146DF612842000C2663BA7F324037AA7C61228E0'),
 (2, 'Fanny', 'Bonilla', 'fannybc@gmail.com', '*146DF612842000C2663BA7F324037AA7C61228E0'),
 (6, 'Prueba', 'Prueba', 'Prueba@prueba', '123'),
-(7, 'Prueba', '', 'odualbc@gmail.com', '$2y$10$U3.K9r0stHc13VfXvwzpnOuNdAt0jAHXNpcBvZLB.ahfhcStxUF/y');
+(7, 'Prueba', '', 'odualbc@gmail.com', '$2y$10$U3.K9r0stHc13VfXvwzpnOuNdAt0jAHXNpcBvZLB.ahfhcStxUF/y'),
+(8, 'Odual', '', 'odualbc@gmail.com', '$2y$10$WMZzk2QrRv0ak2wEH3CaMOP1bpRMWmoQUvwhxbSi5qHw1p0Wj2/VO');
 
 --
 -- Índices para tablas volcadas
@@ -411,7 +437,7 @@ ALTER TABLE `processes`
   ADD KEY `ID_User_Analyst` (`ID_User_Analyst`),
   ADD KEY `ID_Cluster` (`ID_Cluster`),
   ADD KEY `ID_Country` (`ID_Country`),
-  ADD KEY `ID_Entitiy` (`ID_Entitiy`),
+  ADD KEY `ID_Entitiy` (`ID_Entity`),
   ADD KEY `ID_Client` (`ID_Client`),
   ADD KEY `ID_Periodicity` (`ID_Periodicity`),
   ADD KEY `ID_Category` (`ID_Category`),
@@ -449,7 +475,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de la tabla `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ID_Client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `ID_Client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `clusters`
@@ -467,7 +493,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT de la tabla `entities`
 --
 ALTER TABLE `entities`
-  MODIFY `ID_Entity` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Entity` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `news`
@@ -485,13 +511,13 @@ ALTER TABLE `periodicity`
 -- AUTO_INCREMENT de la tabla `processes`
 --
 ALTER TABLE `processes`
-  MODIFY `ID_Process` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Process` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
