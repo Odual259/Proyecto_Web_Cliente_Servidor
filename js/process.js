@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     function loadProcess() {
         $.ajax({
-            url: "obtener_proceso.php",
+            url: "getData.php",
             method: "GET",
             success: function (data) {
                 displayProcess(JSON.parse(data));
@@ -26,7 +26,7 @@ $(document).ready(function () {
 
     $("#processList").on("click", ".dropdown-item", function () {
         $.ajax({
-            url: "obtener_proceso.php",
+            url: "getData.php",
             method: "GET",
             success: function (data) {
                 let dataArray = JSON.parse(data);
