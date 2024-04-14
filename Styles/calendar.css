@@ -143,19 +143,23 @@ h1 {
 }
 
 .form-group {
-  margin-bottom: 20px; /* Ajusta este valor a lo que necesites */
+  margin-bottom: 20px; 
 }
 
 .dropdown-toggle {
-  width: 100%; /* Ajusta este valor a lo que necesites */
+  width: 100%; 
 }
 
 .dropdown-menu {
-  width: 100%; /* Esto hará que la lista desplegable tenga el mismo ancho que su contenedor */
+  width: 100%; 
 }
 
 .dropdown-item {
   font-family: 'Bahnschrift", Arial, sans-serif'; 
 }
 
-
+/* Marca el due-date*/
+.highlight-database-date {
+  background-color: blueviolet; 
+  color: white; 
+}
