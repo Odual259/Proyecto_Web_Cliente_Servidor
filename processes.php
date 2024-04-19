@@ -84,10 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processes List</title>
-    <link rel="stylesheet" type="text/css" href="Styles/styles.css">
-    <script src="formManagementProcess.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="Styles/styles.css">
+    <script src="formManagementProcess.js"></script>
 </head>
 
 <body>
@@ -109,49 +109,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
 <div id="overlay"></div>
 <div id="insert-form-container" style="display: none;">
     <form id="process-form" method="POST" action="">
-        <div class="row">
-            <div class="col-md-4">
-                <input type="hidden" id="process-id" name="process-id">
-                <label for="process" class="form-label">Process Name</label>
-                <input type="text" id="process" name="process" required>
-            </div>
-            <div class="col-md-4">
-                <label for="clientName" class="form-label">Client</label>
-                <select class="form-select" aria-label="" name="cliente" id="clientName">
-                <option selected value="Select Client"></option>
-                <?php
-                $sql = "SELECT * FROM clients";
-                $result = $conn->query($sql);
-                // Verifica si hay resultados
-                if ($result->num_rows > 0) {
-                    // Itera sobre los resultados y muestra cada cliente como una opción en el select
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<option value=\"" . $row["ID_Client"] . "\">" . $row["Client_Name"] . "</option>";
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="hidden" id="process-id" name="process-id">
+                    <label for="process" class="form-label">Process Name</label>
+                    <input type="text" id="process" name="process" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="clientName" class="form-label">Client</label>
+                    <select class="form-select" aria-label="" name="cliente" id="clientName">
+                    <option selected value="Select Client"></option>
+                    <?php
+                    $sql = "SELECT * FROM clients";
+                    $result = $conn->query($sql);
+                    // Verifica si hay resultados
+                    if ($result->num_rows > 0) {
+                        // Itera sobre los resultados y muestra cada cliente como una opción en el select
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value=\"" . $row["ID_Client"] . "\">" . $row["Client_Name"] . "</option>";
+                        }
+                    } else {
+                        echo "<option value=\"\">No se encontraron clientes</option>";
                     }
-                } else {
-                    echo "<option value=\"\">No se encontraron clientes</option>";
-                }
-                ?>
-            </select>
-            </div>
-            <div class="col-md-4">
-                <label for="entityName" class="form-label">Entity</label>
-                <select class="form-select" aria-label="" name="entity" id="entityName">
-                <option selected value="Select Entity"></option>
-                <?php
-                $sql = "SELECT * FROM entities";
-                $result = $conn->query($sql);
-                // Verifica si hay resultados
-                if ($result->num_rows > 0) {
-                    // Itera sobre los resultados y muestra cada entidad como una opción en el select
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<option value=\"" . $row["ID_Entity"] . "\">" . $row["Entity_Name"] . "</option>";
+                    ?>
+                </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="entityName" class="form-label">Entity</label>
+                    <select class="form-select" aria-label="" name="entity" id="entityName">
+                    <option selected value="Select Entity"></option>
+                    <?php
+                    $sql = "SELECT * FROM entities";
+                    $result = $conn->query($sql);
+                    // Verifica si hay resultados
+                    if ($result->num_rows > 0) {
+                        // Itera sobre los resultados y muestra cada entidad como una opción en el select
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value=\"" . $row["ID_Entity"] . "\">" . $row["Entity_Name"] . "</option>";
+                        }
+                    } else {
+                        echo "<option value=\"\">No se encontraron entidades</option>";
                     }
-                } else {
-                    echo "<option value=\"\">No se encontraron entidades</option>";
-                }
-                ?>
-            </select>
+                    ?>
+                </select>
+                </div>
             </div>
         </div>
 
