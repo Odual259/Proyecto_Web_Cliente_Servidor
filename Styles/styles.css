@@ -4,10 +4,31 @@
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    align-content: center;
+    align-self: center; 
+}
+
+#container-register-login {
+    font-family: "Bahnschrift Light Semicondensed", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100px;
+    padding: 20px;
+    align-items: center;
+    align-content: center;
+    align-self: center; 
 }
 
 body {
@@ -80,6 +101,9 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
 }
 
 body.show-form {
@@ -125,6 +149,8 @@ body.show-form {
     padding: 8px;
     margin-bottom: 16px;
     box-sizing: border-box;
+    align-items: center;
+    align-content: center;
 }
 
 label {
@@ -203,6 +229,8 @@ nav a:hover {
 }
 
 #headerLoginRegister {
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: rgb(0, 44, 151);
     color: #fff;
     padding: 10px;
