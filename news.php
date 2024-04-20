@@ -4,18 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDN Project Management Tool - Noticias</title>
-    <style>
-        form {
-            display: none;
-            margin-top: 20px;
-        }
-        input,
-        textarea,
-        button {
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>KDN Project Management Tool - News</title>
+    <title>Registered Clients</title>
+    <link rel="stylesheet" type="text/css" href="Styles/styles.css">
 
     <script>
         function toggleForm() {
@@ -35,7 +26,7 @@
 
     echo "<header>
             <h1>Welcome, $usuario, to KDN Project Management Tool</h1>
-            <img id='logo' src='ruta_de_tu_imagen/logo.png' alt='KDN Project Management Tool'>
+            <img id='logoDarkBackgrounds' src='https://1000logos.net/wp-content/uploads/2023/03/KPMG-logo.png'>
         </header>";
     ?>
 

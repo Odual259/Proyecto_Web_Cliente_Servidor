@@ -90,7 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
 
 <div id="overlay"></div>
     <div id="insert-form-container" style="display: none;">
-        <h3>Insertar/Editar Cliente</h3>
         <form id="client-form" method="POST" action="">
             <input type="hidden" id="client-id" name="client-id">
             <label for="client-name">Client Name:</label>
