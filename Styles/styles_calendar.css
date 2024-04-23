@@ -1,0 +1,164 @@
+body {
+    position: relative;
+    font-family: "Bahnschrift Light Semicondensed", Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#headerCalendar {
+    display: flex;
+    align-items: center;
+     justify-content: space-between;
+    background-color: rgb(0, 44, 151);
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    flex-direction: row;
+}
+#logoCalendar {
+    max-width: 100%;
+    height: 100px;
+    margin-top: 5px;
+    margin-right: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 7.5px;
+}
+
+h1 {
+    margin: 0;
+}
+
+#refreshCalendar,#addProcess {
+    background-color: #fff; 
+    color: #1f33ec; 
+    border: none; 
+    padding: 15px 32px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+    border-radius: 12px; 
+}
+
+#refreshCalendar:hover {
+    background-color: #faf6f6; 
+}
+#addProcess:hover {
+    background-color: #faf6f6; 
+}
+#logoDarkBackgrounds {
+    max-width: 100%;
+    height: 100px;
+    margin-top: 5px;
+    margin-right: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 7.5px;
+}
+
+#mainContainer {
+    width: 40%;
+    margin: auto;
+}
+
+#bodyCalendar{
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+#calendar {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td, th {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+    background-color:#fff;
+    color:#333;
+  }
+  th {
+    background-color: #0056b3; 
+    color: white;
+  }
+  .highlight {
+    background-color: #1f33ec;
+    color: white;
+  }
+  #monthAndYear {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-top: 50px;
+
+  }
+  #monthAndYear span {
+    cursor: pointer;
+    margin: 0 15px;
+  }
+
+.filter-section {
+  background-color: #fff; 
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+}
+
+
+.filter-section h2 {
+    color: rgb(0, 44, 151);
+    margin-bottom: 20px;
+    text-align: center; 
+  }
+  
+.filter-section label {
+  color: rgb(0, 44, 151);
+  font-family: Arial, sans-serif; 
+  margin-bottom: 20px;
+  font-weight: bold; 
+}
+
+
+
+.btn-secondary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: rgb(0, 44, 151);
+  --bs-btn-border-color: rgb(0, 44, 151);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: rgb(30 87 225);
+  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-focus-shadow-rgb: 130, 138, 145;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: rgb(0, 44, 151);
+  --bs-btn-active-border-color: rgb(0, 44, 151);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #6c757d 5;
+  --bs-btn-disabled-border-color: #6c757d;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Ajusta este valor a lo que necesites */
+}
+
+.dropdown-toggle {
+  width: 100%; /* Ajusta este valor a lo que necesites */
+}
+
+.dropdown-menu {
+  width: 100%; /* Esto hará que la lista desplegable tenga el mismo ancho que su contenedor */
+}
+
+.dropdown-item {
+  font-family: 'Bahnschrift", Arial, sans-serif'; 
+}
+
+.highlight-database-date {
+  background-color: blueviolet; 
+  color: white; /* Cambia esto al color de texto que prefieras */
+}
