@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
 
 <header id="headerMenu">
     <!-- Aquí colocamos el logotipo y el título -->
-    <a href="index.html">
+    <a href="index.php">
         <img id="logoDarkBackgrounds" src="https://1000logos.net/wp-content/uploads/2023/03/KPMG-logo.png"
         alt="KDN Project Management Tool">
     </a>

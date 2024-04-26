@@ -5,4 +5,5 @@
         <a href="processes.php">Processes</a>
         <a href="team.php">Team</a>
         <a href="news.php">News</a>
+        <a href="usuarios.php">Users</a>
 </nav>

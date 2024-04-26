@@ -22,7 +22,8 @@
         </a>
         
         <div id="buttonsContainer">
-        <button id="refreshCalendar">Refresh Calendar</button>
+        <button id="refreshCalendar" onclick="location.href='calendar.php'">Refresh Calendar</button>
+        
         <button id="addProcess">Add Procces</button>
     </div>
 </header>
@@ -82,7 +83,7 @@
         <label for="process-name">Process Name:</label>
         <div class="dropdown" >
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-                Procesos
+                Process
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3" id="processList">
     
